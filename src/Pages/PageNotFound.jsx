@@ -40,7 +40,7 @@ function PageNotFound() {
   return (
     <StyledPageNotFound>
       <Box>
-        <Heading as="h1">
+        <Heading as="h1" color='green'>
           The page you are looking for could not be found 😢
         </Heading>
         <button onClick={() => navigate(-1)} size="large">
