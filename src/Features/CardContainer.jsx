@@ -54,7 +54,7 @@ export default function CardContainer() {
   const token = localStorage.getItem("token")
   const { data, isLoading, error } = useData(token);
 
-  if (error) return navigate("/login");
+  if (error) return navigate("/login", { replace: true });
   console.log(error);
 
   const ans = data === undefined ? undefined : data.data.data[0];

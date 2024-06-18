@@ -24,7 +24,6 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  const navigate = useNavigate();
 
   function handleClick() {
     localStorage.removeItem('token');

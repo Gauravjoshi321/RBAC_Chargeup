@@ -7,7 +7,7 @@ export default function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
 
   const { error } = useCheckLoggedIn(token);
-  if (error) navigate("/login");
+  if (error) navigate("/login", { replace: true });
 
   return (
     <>
