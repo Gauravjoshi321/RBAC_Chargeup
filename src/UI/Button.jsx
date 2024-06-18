@@ -51,17 +51,19 @@ const variations = {
 const Button = styled.button`
   padding: 0.5rem 1rem;
   color: var(--color-brand-50);
-  background-color: var(--color-brand-500);
+  background-color: var(--color-green-700);
   border: none;
   border-radius: 4px;
+  display: flex;
+  justify-content: center;
   cursor: pointer;
 
   &:hover {
-    background-color: var(--color-brand-700)
+    background-color: var(--color-green-500)
     }
 
-    ${props => sizes[props.size]};
-    ${props => variations[props.variation]};
+    /* ${props => sizes[props.size]};
+    ${props => variations[props.variation]}; */
 `;
 
 Button.defaultProps = {

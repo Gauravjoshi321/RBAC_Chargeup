@@ -1,21 +1,22 @@
 import { useState } from "react";
-import Button from "../../ui/Button";
-import Form from "../../ui/Form";
-import Input from "../../ui/Input";
-import FormRowVertical from "../../ui/FormRowVertical";
-import SpinnerMini from "../../ui/SpinnerMini";
-import { useLogin } from "./useLogin";
+import Button from "../UI/Button";
+import Form from "../UI/Form";
+import Input from "../UI/Input";
+import FormRowVertical from "../UI/FormRowVertical";
+import SpinnerMini from "../UI/SpinnerMini";
+import { useLogin } from "../hooks/useLogin";
 
 function LoginForm() {
-  const [email, setEmail] = useState("jekarar986@usoplay.com");
-  const [password, setPassword] = useState("12345678");
+  const [email, setEmail] = useState("joshi@gmail.com");
+  const [password, setPassword] = useState("Joshi@123");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { login, isLoggingIn } = useLogin();
+  const { login } = useLogin();
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (!email || !password) return;
+    // if (!email || !password) return;
 
     login({ email, password });
   }
@@ -31,7 +32,7 @@ function LoginForm() {
             autoComplete="username"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            disabled={isLoggingIn}
+            disabled={isLoading}
           />
         </FormRowVertical>
         <FormRowVertical label="Password">
@@ -41,17 +42,15 @@ function LoginForm() {
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            disabled={isLoggingIn}
+            disabled={isLoading}
           />
         </FormRowVertical>
         <FormRowVertical>
-          <Button size="large">
-            {isLoggingIn ? <SpinnerMini /> : "Login"}
+          <Button type="submit" size="large" onClick={() => setIsLoading(true)}>
+            {isLoading ? <SpinnerMini /> : "Login"}
           </Button>
         </FormRowVertical>
       </Form>
-
-      <p>Note: If the password or email is incorrect, so it means backend server is paused.</p>
     </>
   );
 }

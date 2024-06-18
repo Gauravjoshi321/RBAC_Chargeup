@@ -1,4 +1,5 @@
 import {
+  Button,
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
@@ -8,7 +9,8 @@ import {
   MenuItems,
   Transition,
 } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -22,6 +24,13 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    localStorage.removeItem('token');
+    location.reload();
+  }
+
   return (
     <Disclosure as="nav" className="bg-white-800 shadow-md">
       {({ open }) => (
@@ -68,12 +77,13 @@ export default function Navbar() {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
+                  onClick={handleClick}
                   type="button"
                   className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  <button className="p-0.5 w-24 text-base" aria-hidden="true">SignOut</button>
                 </button>
 
                 {/* Profile dropdown */}
@@ -83,7 +93,7 @@ export default function Navbar() {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
+                        className="h-9 w-9 rounded-full"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt=""
                       />
